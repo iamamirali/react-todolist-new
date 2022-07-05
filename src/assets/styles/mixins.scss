@@ -1,0 +1,31 @@
+@import "assets/styles/variables";
+
+@mixin item-box {
+  background-color: $milky;
+  padding: 14px 24px;
+  width: 50%;
+  box-shadow: $itemBox;
+  border-radius: 8px;
+  margin: auto;
+  margin-bottom: 36px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+@mixin todo-item-box {
+  @include item-box;
+  width: 60%;
+  box-sizing: border-box;
+  margin-bottom: 24px;
+  padding: 8px 36px;
+}
+
+// @mixin box-round-color {
+//   content: '';
+// }
+
+@mixin squeeze-animation {
+  animation-name: squeeze;
+  animation-duration: 0.3s;
+}

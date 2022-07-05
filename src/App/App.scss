@@ -1,0 +1,12 @@
+@import "assets/styles/variables";
+
+.app-container {
+  width: 80%;
+  margin: auto;
+  text-align: center;
+
+  .app-title {
+    font-size: 3rem;
+    color: $lightBlack;
+  }
+}
