@@ -1,3 +1,19 @@
 .todos-container {
   margin-bottom: 64px;
+
+  .todo-item-exit-active {
+    opacity: 0;
+    transition: opacity 300ms ease-out;
+  }
+  .todo-item-exit {
+    opacity: 0;
+    transition: opacity 300ms ease-out;
+  }
+  .todo-item-enter {
+    opacity: 0;
+  }
+  .todo-item-enter-active {
+    opacity: 1;
+    transition: opacity 300ms ease-in;
+  }
 }

@@ -7,12 +7,9 @@
   overflow: hidden;
 }
 .todo-container::after {
-  content: "";
-  position: absolute;
-  left: -75px;
-  top: 0;
-  width: 90px;
-  height: 90px;
-  border-radius: 50%;
-  background-color: $blue;
+  @include box-left-color;
+}
+.done-todo {
+  @extend .todo-container;
+  background-color: red;
 }

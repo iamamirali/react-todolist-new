@@ -1,5 +1,6 @@
 import { ITodo } from "App/models/todo.model";
-import { useEffect } from "react";
+import { saveTodoList } from "App/services/storage.service";
+import { useState } from "react";
 import "./todo-item.scss";
 
 interface props {
@@ -9,18 +10,28 @@ interface props {
 }
 
 const TodoItem = ({ todoItem, todoList, setTodoList }: props) => {
+  const [todoStyle, setTodoStyle] = useState("todo-container");
+
   const removeTodo = (id: number) => {
     let todos = todoList;
-    setTodoList(
-      todos.filter((todo) => todo.id != id)
+    setTodoList(todos.filter((todo) => todo.id != id));
+    saveTodoList(todoList);
+  };
+
+  const setDoneTodo = () => {
+    setTodoStyle(
+      todoStyle == "todo-container" ? "done-todo" : "todo-container"
     );
   };
 
   return (
-    <div className="todo-container">
+    <div className={todoStyle}>
       <h1>{todoItem.name}</h1>
       <button className="btn-remove" onClick={() => removeTodo(todoItem.id)}>
         delete
+      </button>
+      <button className="btn-done" onClick={() => setDoneTodo()}>
+        done
       </button>
     </div>
   );

@@ -1,10 +1,7 @@
 import { ITodo } from "App/models/todo.model";
 
-export let todos: ITodo[] = [];
-
-export const saveTodo = (todo: ITodo) => {
-  todos.push(todo);
-  localStorage.setItem("todos", JSON.stringify(todos));
+export const saveTodoList = (todoList: ITodo[]) => {
+  localStorage.setItem("todos", JSON.stringify(todoList));
 };
 
 export const getTodos = (): string => {

@@ -1,4 +1,5 @@
 import { ITodo } from "App/models/todo.model";
+import { saveTodoList } from "App/services/storage.service";
 import { useState } from "react";
 import "./todo-input.scss";
 
@@ -28,7 +29,9 @@ const TodoInput = ({ todo, setTodo, todoList, setTodoList }: props) => {
   };
 
   const updateTodoList = () => {
-    setTodoList([...todoList, { id: Date.now(), name: todo, isDone: false }]);
+    let newList = [...todoList, { id: Date.now(), name: todo, isDone: false }];
+    setTodoList(newList);
+    saveTodoList(newList);
   };
 
   return (

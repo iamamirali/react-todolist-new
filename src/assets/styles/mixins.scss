@@ -5,7 +5,7 @@
   padding: 14px 24px;
   width: 50%;
   box-shadow: $itemBox;
-  border-radius: 8px;
+  border-radius: 12px;
   margin: auto;
   margin-bottom: 36px;
   display: flex;
@@ -21,9 +21,15 @@
   padding: 8px 36px;
 }
 
-// @mixin box-round-color {
-//   content: '';
-// }
+@mixin box-left-color {
+  content: "";
+  position: absolute;
+  left: -81px;
+  top: 0;
+  width: 90px;
+  height: 90px;
+  background-color: $blue;
+}
 
 @mixin squeeze-animation {
   animation-name: squeeze;
