@@ -12,6 +12,7 @@
 .done-todo {
   @extend .todo-container;
   background-color: $darkWhite;
+  opacity: 70%;
 }
 .done-todo::after {
   @include box-left-badge;
