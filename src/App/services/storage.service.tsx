@@ -4,6 +4,6 @@ export const saveTodoList = (todoList: ITodo[]) => {
   localStorage.setItem("todos", JSON.stringify(todoList));
 };
 
-export const getTodos = (): string => {
+export const getTodos = (): ITodo[] => {
   return JSON.parse(localStorage.getItem("todos") as string);
 };

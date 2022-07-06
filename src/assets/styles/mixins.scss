@@ -3,35 +3,51 @@
 @mixin item-box {
   background-color: $milky;
   padding: 14px 24px;
-  width: 50%;
+  width: 55%;
   box-shadow: $itemBox;
   border-radius: 12px;
   margin: auto;
-  margin-bottom: 36px;
+  margin-bottom: 40px;
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
+  transition: all 0.3s;
 }
 
 @mixin todo-item-box {
   @include item-box;
-  width: 60%;
+  width: 65%;
   box-sizing: border-box;
-  margin-bottom: 24px;
-  padding: 8px 36px;
+  margin-bottom: 30px;
+  padding: 8px 18px 8px 30px;
 }
 
-@mixin box-left-color {
+@mixin box-left-badge {
   content: "";
   position: absolute;
-  left: -81px;
+  left: -142px;
   top: 0;
-  width: 90px;
-  height: 90px;
+  width: 150px;
+  height: 150px;
   background-color: $blue;
+  transition: all 0.3s;
 }
 
 @mixin squeeze-animation {
   animation-name: squeeze;
   animation-duration: 0.3s;
+}
+
+@mixin cross-out-animation {
+  animation-name: cross-out;
+  animation-duration: 0.4s;
+}
+
+@mixin small-btn {
+  cursor: pointer;
+  background: none;
+  font-size: 1.7rem;
+  transition: all 0.3s;
+  border: none;
+  margin: 6px 8px;
 }

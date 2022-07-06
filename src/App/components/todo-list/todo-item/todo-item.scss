@@ -7,9 +7,32 @@
   overflow: hidden;
 }
 .todo-container::after {
-  @include box-left-color;
+  @include box-left-badge;
 }
 .done-todo {
   @extend .todo-container;
-  background-color: red;
+  background-color: $darkWhite;
+}
+.done-todo::after {
+  @include box-left-badge;
+  background-color: $green;
+}
+
+.btns-container {
+  margin-top: 14px;
+  .btn-not-done {
+    @include small-btn;
+    color: $darkGray;
+  }
+  .btn-done {
+    @include small-btn;
+    color: $green;
+  }
+  .btn-remove {
+    @include small-btn;
+    color: $red;
+  }
+  .btn-remove:hover {
+    color: $darkRed;
+  }
 }
