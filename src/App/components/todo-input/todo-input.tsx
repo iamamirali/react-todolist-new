@@ -1,30 +1,28 @@
-import { ITodo } from "App/models/todo.model";
+import { Todo_TodoList_Props } from "App/models/props.model";
 import { saveTodoList } from "App/services/storage.service";
 import { useState } from "react";
 import "./todo-input.scss";
 
-interface props {
-  todo: string;
-  setTodo: React.Dispatch<React.SetStateAction<string>>;
-  todoList: ITodo[];
-  setTodoList: React.Dispatch<React.SetStateAction<ITodo[]>>;
-}
-
-const TodoInput = ({ todo, setTodo, todoList, setTodoList }: props) => {
-  const [inputStyle, setInputStyle] = useState("todo-input");
+const TodoInput = ({
+  todo,
+  setTodo,
+  todoList,
+  setTodoList,
+}: Todo_TodoList_Props) => {
+  const [hasInputErr, setHasInputErr] = useState<boolean>();
 
   const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTodo(e.target.value);
   };
 
-  const onInputSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const onTodoSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!todo) {
-      setInputStyle("error-input");
+      setHasInputErr(true);
     } else {
       updateTodoList();
       setTodo("");
-      setInputStyle("todo-input");
+      setHasInputErr(false);
     }
   };
 
@@ -35,12 +33,12 @@ const TodoInput = ({ todo, setTodo, todoList, setTodoList }: props) => {
   };
 
   return (
-    <form onSubmit={(e) => onInputSubmit(e)} className="input-container">
+    <form onSubmit={(e) => onTodoSubmit(e)} className="input-container">
       <input
         type="text"
         onChange={(e) => onInputChange(e)}
         value={todo}
-        className={inputStyle}
+        className={hasInputErr ? "error-input" : "todo-input"}
         placeholder="Add a ToDo..."
       />
       <button className="btn-add" type="submit">

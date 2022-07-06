@@ -4,15 +4,11 @@ import { CSSTransition, TransitionGroup } from "react-transition-group";
 import "./todo-list.scss";
 import { getTodos, saveTodoList } from "App/services/storage.service";
 import { useEffect } from "react";
+import { TodoListProps } from "App/models/props.model";
 
-interface props {
-  todoList: ITodo[];
-  setTodoList: React.Dispatch<React.SetStateAction<ITodo[]>>;
-}
-
-const TodoList = ({ todoList, setTodoList }: props) => {
+const TodoList = ({ todoList, setTodoList }: TodoListProps) => {
   useEffect(() => {
-    if (getTodos()) setTodoList(getTodos());
+    if (getTodos) setTodoList(getTodos());
   }, []);
 
   const onRemoveAllClick = () => {

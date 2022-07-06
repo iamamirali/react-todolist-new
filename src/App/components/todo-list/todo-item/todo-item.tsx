@@ -1,18 +1,17 @@
+import { TodoListProps } from "App/models/props.model";
 import { ITodo } from "App/models/todo.model";
 import { saveTodoList } from "App/services/storage.service";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { FaCheckCircle } from "react-icons/fa";
 import { RiDeleteBin5Fill } from "react-icons/ri";
 import "./todo-item.scss";
 
-interface props {
+type Props = TodoListProps & {
   todoItem: ITodo;
-  todoList: ITodo[];
-  setTodoList: React.Dispatch<React.SetStateAction<ITodo[]>>;
-}
+};
 
-const TodoItem = ({ todoItem, todoList, setTodoList }: props) => {
-  const [todoStyle, setTodoStyle] = useState<boolean>(todoItem.isDone);
+const TodoItem = ({ todoItem, todoList, setTodoList }: Props) => {
+  const [isTodoDone, setIsTodoDone] = useState<boolean>(todoItem.isDone);
 
   const removeTodo = (id: number) => {
     const newList = todoList.filter((todo) => todo.id != id);
@@ -22,19 +21,19 @@ const TodoItem = ({ todoItem, todoList, setTodoList }: props) => {
 
   const setDoneTodo = () => {
     todoItem.isDone = !todoItem.isDone;
-    setTodoStyle(!todoStyle);
+    setIsTodoDone(!isTodoDone);
     saveTodoList(todoList);
   };
 
   return (
-    <div className={todoStyle ? "done-todo" : "todo-container"}>
+    <div className={isTodoDone ? "done-todo" : "todo-container"}>
       <h1>{todoItem.name}</h1>
       <div className="btns-container">
         <button className="btn-remove" onClick={() => removeTodo(todoItem.id)}>
           <RiDeleteBin5Fill></RiDeleteBin5Fill>
         </button>
         <button
-          className={todoStyle ? "btn-done" : "btn-not-done"}
+          className={isTodoDone ? "btn-done" : "btn-not-done"}
           onClick={() => setDoneTodo()}
         >
           <FaCheckCircle></FaCheckCircle>
