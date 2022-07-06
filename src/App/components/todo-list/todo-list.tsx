@@ -2,7 +2,7 @@ import { ITodo } from "App/models/todo.model";
 import TodoItem from "./todo-item/todo-item";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 import "./todo-list.scss";
-import { getTodos } from "App/services/storage.service";
+import { getTodos, saveTodoList } from "App/services/storage.service";
 import { useEffect } from "react";
 
 interface props {
@@ -14,6 +14,11 @@ const TodoList = ({ todoList, setTodoList }: props) => {
   useEffect(() => {
     if (getTodos()) setTodoList(getTodos());
   }, []);
+
+  const onRemoveAllClick = () => {
+    setTodoList([]);
+    saveTodoList([]);
+  };
 
   return (
     <section className="todos-container">
@@ -29,6 +34,11 @@ const TodoList = ({ todoList, setTodoList }: props) => {
           </CSSTransition>
         ))}
       </TransitionGroup>
+      {todoList.length > 2 ? (
+        <button className="btn-remove-all" onClick={onRemoveAllClick}>
+          Remove All
+        </button>
+      ) : null}
     </section>
   );
 };

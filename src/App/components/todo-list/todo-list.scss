@@ -1,3 +1,5 @@
+@import "assets/styles/variables";
+
 .todos-container {
   margin-bottom: 64px;
 
@@ -15,5 +17,19 @@
   .todo-item-enter-active {
     opacity: 1;
     transition: opacity 300ms ease-in;
+  }
+
+  .btn-remove-all {
+    background-color: $red;
+    padding: 8px 16px;
+    border-radius: 6px;
+    color: $milky;
+    border: none;
+    font-size: 1.4rem;
+    margin-top: 64px;
+    transition: all 0.3s;
+  }
+  .btn-remove-all:hover {
+    background-color: $darkRed;
   }
 }
