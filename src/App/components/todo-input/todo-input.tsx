@@ -11,11 +11,11 @@ const TodoInput = ({
 }: Todo_TodoList_Props) => {
   const [hasInputErr, setHasInputErr] = useState<boolean>();
 
-  const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTodo(e.target.value);
   };
 
-  const onTodoSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleTodoSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!todo) {
       setHasInputErr(true);
@@ -33,10 +33,10 @@ const TodoInput = ({
   };
 
   return (
-    <form onSubmit={(e) => onTodoSubmit(e)} className="input-container">
+    <form onSubmit={(e) => handleTodoSubmit(e)} className="input-container">
       <input
         type="text"
-        onChange={(e) => onInputChange(e)}
+        onChange={(e) => handleInputChange(e)}
         value={todo}
         className={hasInputErr ? "error-input" : "todo-input"}
         placeholder="Add a ToDo..."

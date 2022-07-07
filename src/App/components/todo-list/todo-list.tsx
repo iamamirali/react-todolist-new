@@ -1,4 +1,3 @@
-import { ITodo } from "App/models/todo.model";
 import TodoItem from "./todo-item/todo-item";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 import "./todo-list.scss";
@@ -8,8 +7,8 @@ import { TodoListProps } from "App/models/props.model";
 
 const TodoList = ({ todoList, setTodoList }: TodoListProps) => {
   useEffect(() => {
-    if (getTodos) setTodoList(getTodos());
-  }, []);
+    if (getTodos()) setTodoList(getTodos());
+  }, [setTodoList]);
 
   const onRemoveAllClick = () => {
     setTodoList([]);
@@ -19,22 +18,23 @@ const TodoList = ({ todoList, setTodoList }: TodoListProps) => {
   return (
     <section className="todos-container">
       <TransitionGroup>
-        {todoList.map((todo, i) => (
-          <CSSTransition key={todo.id} timeout={300} classNames="todo-item">
-            <TodoItem
-              key={i}
-              todoItem={todo}
-              todoList={todoList}
-              setTodoList={setTodoList}
-            />
-          </CSSTransition>
-        ))}
+        {todoList.length > 0 &&
+          todoList.map((todo, i) => (
+            <CSSTransition key={todo.id} timeout={300} classNames="todo-item">
+              <TodoItem
+                key={i}
+                todoItem={todo}
+                todoList={todoList}
+                setTodoList={setTodoList}
+              />
+            </CSSTransition>
+          ))}
       </TransitionGroup>
-      {todoList.length > 2 ? (
+      {todoList.length > 2 && (
         <button className="btn-remove-all" onClick={onRemoveAllClick}>
           Remove All
         </button>
-      ) : null}
+      )}
     </section>
   );
 };

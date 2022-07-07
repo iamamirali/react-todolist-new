@@ -14,7 +14,7 @@ const TodoItem = ({ todoItem, todoList, setTodoList }: Props) => {
   const [isTodoDone, setIsTodoDone] = useState<boolean>(todoItem.isDone);
 
   const removeTodo = (id: number) => {
-    const newList = todoList.filter((todo) => todo.id != id);
+    const newList = todoList.filter((todo) => todo.id !== id);
     setTodoList(newList);
     saveTodoList(newList);
   };
