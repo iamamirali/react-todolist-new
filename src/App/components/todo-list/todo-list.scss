@@ -33,3 +33,11 @@
     background-color: $darkRed;
   }
 }
+
+@media screen and (max-width: 480px) {
+  .todos-container {
+    .btn-remove-all {
+      font-size: 1.2rem;
+    }
+  }
+}

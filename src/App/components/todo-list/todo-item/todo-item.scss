@@ -19,8 +19,15 @@
   background-color: $green;
 }
 
+.todo-title {
+  font: {
+    size: 1.5rem;
+    weight: bold;
+  }
+}
+
 .btns-container {
-  margin-top: 14px;
+  margin-top: 16px;
   .btn-not-done {
     @include small-btn;
     color: $darkGray;
@@ -35,5 +42,28 @@
   }
   .btn-remove:hover {
     color: $darkRed;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .todo-container {
+    width: 100%;
+    padding: 8px 2px 8px 12px;
+
+    .todo-title {
+      font-size: 0.9rem;
+    }
+    .btns-container {
+      margin-top: 9px;
+      .btn-done,
+      .btn-not-done,
+      .btn-remove {
+        font-size: 1.2rem;
+        margin: 4px 6px;
+      }
+    }
+  }
+  .todo-container::after {
+    left: -144px;
   }
 }

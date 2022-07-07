@@ -27,7 +27,7 @@ const TodoItem = ({ todoItem, todoList, setTodoList }: Props) => {
 
   return (
     <div className={isTodoDone ? "done-todo" : "todo-container"}>
-      <h1>{todoItem.name}</h1>
+      <p className="todo-title">{todoItem.name}</p>
       <div className="btns-container">
         <button className="btn-remove" onClick={() => removeTodo(todoItem.id)}>
           <RiDeleteBin5Fill></RiDeleteBin5Fill>
