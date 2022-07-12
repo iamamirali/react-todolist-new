@@ -12,11 +12,13 @@ function App() {
   const [todoList, setTodoList] = useState<ITodo[]>([]);
 
   return (
-    <main className="app-container">
-      <h1 className="app-title">ToDo List</h1>
-      <TodoInput {...{ todo, setTodo, todoList, setTodoList }} />
-      <TodoList {...{ todoList, setTodoList }} />
-    </main>
+    <>
+      <main className="app-container">
+        <h1 className="app-title">ToDo List</h1>
+        <TodoInput {...{ todo, setTodo, todoList, setTodoList }} />
+        <TodoList {...{ todoList, setTodoList }} />
+      </main>
+    </>
   );
 }
 

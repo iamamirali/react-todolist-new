@@ -29,16 +29,18 @@ function TodoList({ todoList, setTodoList }: TodoListProps) {
   }
 
   return (
-    <section className="todos-container">
-      <TransitionGroup>
-        {todoList.length > 0 && showList(todoList)}
-      </TransitionGroup>
-      {todoList.length > 2 && (
-        <button className="btn-remove-all" onClick={onRemoveAllClick}>
-          Remove All
-        </button>
-      )}
-    </section>
+    <>
+      <section className="todos-container">
+        <TransitionGroup>
+          {todoList.length > 0 && showList(todoList)}
+        </TransitionGroup>
+        {todoList.length > 2 && (
+          <button className="btn-remove-all" onClick={onRemoveAllClick}>
+            Remove All
+          </button>
+        )}
+      </section>
+    </>
   );
 }
 

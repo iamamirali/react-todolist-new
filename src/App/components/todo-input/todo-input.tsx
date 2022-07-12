@@ -39,21 +39,23 @@ function TodoInput({
   }
 
   return (
-    <form
-      onSubmit={(e) => handleTodoSubmit(e, todo)}
-      className="input-container"
-    >
-      <input
-        type="text"
-        onChange={handleInputChange}
-        value={todo}
-        className={hasInputErr ? "error-input" : "todo-input"}
-        placeholder="Add a ToDo..."
-      />
-      <button className="btn-add" type="submit">
-        +
-      </button>
-    </form>
+    <>
+      <form
+        onSubmit={(e) => handleTodoSubmit(e, todo)}
+        className="input-container"
+      >
+        <input
+          type="text"
+          onChange={handleInputChange}
+          value={todo}
+          className={hasInputErr ? "error-input" : "todo-input"}
+          placeholder="Add a ToDo..."
+        />
+        <button className="btn-add" type="submit">
+          +
+        </button>
+      </form>
+    </>
   );
 }
 

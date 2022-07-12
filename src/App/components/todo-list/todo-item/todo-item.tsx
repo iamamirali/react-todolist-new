@@ -32,23 +32,25 @@ function TodoItem({ todoItem, todoList, setTodoList }: Props) {
   }
 
   return (
-    <div className={isTodoDone ? "done-todo" : "todo-container"}>
-      <p className="todo-title">{todoItem.name}</p>
-      <div className="btns-container">
-        <button
-          className="btn-remove"
-          onClick={() => removeTodo(todoItem.id, todoList)}
-        >
-          <RiDeleteBin5Fill></RiDeleteBin5Fill>
-        </button>
-        <button
-          className={isTodoDone ? "btn-done" : "btn-not-done"}
-          onClick={() => setDoneTodo(todoItem)}
-        >
-          <FaCheckCircle></FaCheckCircle>
-        </button>
+    <>
+      <div className={isTodoDone ? "done-todo" : "todo-container"}>
+        <p className="todo-title">{todoItem.name}</p>
+        <div className="btns-container">
+          <button
+            className="btn-remove"
+            onClick={() => removeTodo(todoItem.id, todoList)}
+          >
+            <RiDeleteBin5Fill></RiDeleteBin5Fill>
+          </button>
+          <button
+            className={isTodoDone ? "btn-done" : "btn-not-done"}
+            onClick={() => setDoneTodo(todoItem)}
+          >
+            <FaCheckCircle></FaCheckCircle>
+          </button>
+        </div>
       </div>
-    </div>
+    </>
   );
 }
 
