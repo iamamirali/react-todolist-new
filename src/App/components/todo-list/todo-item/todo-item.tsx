@@ -10,37 +10,46 @@ type Props = TodoListProps & {
   todoItem: ITodo;
 };
 
-const TodoItem = ({ todoItem, todoList, setTodoList }: Props) => {
+function TodoItem({ todoItem, todoList, setTodoList }: Props) {
   const [isTodoDone, setIsTodoDone] = useState<boolean>(todoItem.isDone);
 
-  const removeTodo = (id: number) => {
-    const newList = todoList.filter((todo) => todo.id !== id);
+  function removeTodo(id: number, list: ITodo[]) {
+    const newList = showEditedList(id, list);
     setTodoList(newList);
     saveTodoList(newList);
-  };
+  }
+  function showEditedList(selectedId: number, list: ITodo[]) {
+    return list.filter((item) => item.id !== selectedId);
+  }
 
-  const setDoneTodo = () => {
-    todoItem.isDone = !todoItem.isDone;
-    setIsTodoDone(!isTodoDone);
+  function setDoneTodo(todo: ITodo) {
+    let doneStatus = toggleDone(todo);
+    setIsTodoDone(doneStatus);
     saveTodoList(todoList);
-  };
+  }
+  function toggleDone(item: ITodo) {
+    return (item.isDone = !item.isDone);
+  }
 
   return (
     <div className={isTodoDone ? "done-todo" : "todo-container"}>
       <p className="todo-title">{todoItem.name}</p>
       <div className="btns-container">
-        <button className="btn-remove" onClick={() => removeTodo(todoItem.id)}>
+        <button
+          className="btn-remove"
+          onClick={() => removeTodo(todoItem.id, todoList)}
+        >
           <RiDeleteBin5Fill></RiDeleteBin5Fill>
         </button>
         <button
           className={isTodoDone ? "btn-done" : "btn-not-done"}
-          onClick={() => setDoneTodo()}
+          onClick={() => setDoneTodo(todoItem)}
         >
           <FaCheckCircle></FaCheckCircle>
         </button>
       </div>
     </div>
   );
-};
+}
 
 export default TodoItem;

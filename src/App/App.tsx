@@ -8,21 +8,14 @@ import TodoList from "./components/todo-list/todo-list";
 import { ITodo } from "./models/todo.model";
 
 function App() {
-  const [todo, setTodo] = useState(""); // never forget set type on state
+  const [todo, setTodo] = useState<string>("");
   const [todoList, setTodoList] = useState<ITodo[]>([]);
 
   return (
     <main className="app-container">
       <h1 className="app-title">ToDo List</h1>
-      <TodoInput
-        // todo={todo}
-        // setTodo={setTodo}
-        // todoList={todoList}
-        // setTodoList={setTodoList}
-        {...{ todo, setTodo, todoList, setTodoList }}
-        // user rest and spread
-      />
-      <TodoList todoList={todoList} setTodoList={setTodoList} />
+      <TodoInput {...{ todo, setTodo, todoList, setTodoList }} />
+      <TodoList {...{ todoList, setTodoList }} />
     </main>
   );
 }
