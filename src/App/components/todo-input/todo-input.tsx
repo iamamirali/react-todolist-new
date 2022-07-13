@@ -2,6 +2,7 @@ import { Todo_TodoList_Props } from "App/models/props.model";
 import { ITodo } from "App/models/todo.model";
 import { saveTodoList } from "App/services/storage.service";
 import { useState } from "react";
+import Web3 from "web3";
 import "./todo-input.scss"; // use module
 
 function TodoInput({
@@ -10,6 +11,10 @@ function TodoInput({
   todoList,
   setTodoList,
 }: Todo_TodoList_Props) {
+  async function metamask() {
+    const web3 = new Web3(window.ethereum);
+  }
+
   const [hasInputErr, setHasInputErr] = useState<boolean>(false);
 
   function handleInputChange(e: React.ChangeEvent<HTMLInputElement>) {
@@ -19,6 +24,7 @@ function TodoInput({
 
   function handleTodoSubmit(e: React.FormEvent<HTMLFormElement>, todo: string) {
     e.preventDefault();
+    metamask();
     setHasInputErr(!todo);
     if (!todo) return;
     updateTodoList(todoList);
