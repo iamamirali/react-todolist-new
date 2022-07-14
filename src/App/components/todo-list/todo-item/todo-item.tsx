@@ -35,7 +35,7 @@ function TodoItem({ todoItem, todoList, setTodoList }: Props) {
     <>
       <div className={isTodoDone ? "done-todo" : "todo-container"}>
         <p className="todo-title">{todoItem.name}</p>
-        <p className="todo-signature">{todoItem.signature}</p>
+        <span className="todo-signature">{todoItem.signature}</span>
         <div className="btns-container">
           <button
             className="btn-remove"

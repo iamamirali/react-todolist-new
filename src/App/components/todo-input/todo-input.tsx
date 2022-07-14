@@ -2,10 +2,8 @@ import { Todo_TodoList_Props } from "App/models/props.model";
 import { ITodo } from "App/models/todo.model";
 import { Web3Props } from "App/models/web3.model";
 import { saveTodoList } from "App/services/storage.service";
-import withWeb3 from "App/services/withWeb3";
 import { useState } from "react";
-import Web3 from "web3";
-import "./todo-input.scss"; // use module
+import "./todo-input.scss";
 
 function TodoInput({
   todo,
@@ -14,9 +12,6 @@ function TodoInput({
   setTodoList,
   checkWallet,
   signMessage,
-  web3,
-  hasWallet,
-  signHash,
 }: Todo_TodoList_Props & Web3Props) {
   const [hasInputErr, setHasInputErr] = useState<boolean>(false);
 
@@ -25,20 +20,22 @@ function TodoInput({
     setTodo(value);
   }
 
-  function handleTodoSubmit(e: React.FormEvent<HTMLFormElement>, todo: string) {
+  async function handleTodoSubmit(
+    e: React.FormEvent<HTMLFormElement>,
+    todo: string
+  ) {
     e.preventDefault();
     setHasInputErr(!todo);
     checkWallet();
     if (!todo) return;
-    signMessage(web3, hasWallet, todo);
-    updateTodoList(todoList, signHash);
     setTodo("");
+    updateTodoList(todoList, await signMessage(todo));
   }
 
-  async function updateTodoList(list: ITodo[], signHash: string) {
+  async function updateTodoList(list: ITodo[], signature: string) {
     let newList = setNewList(list, {
       name: todo,
-      signature: signHash,
+      signature: signature,
       id: Date.now(),
       isDone: false,
     });
@@ -70,4 +67,4 @@ function TodoInput({
   );
 }
 
-export default withWeb3(TodoInput);
+export default TodoInput;

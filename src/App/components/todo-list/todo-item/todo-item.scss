@@ -3,6 +3,7 @@
 
 .todo-container {
   @include todo-item-box;
+  display: block;
   position: relative;
   overflow: hidden;
 }
@@ -24,6 +25,11 @@
     size: 1.5rem;
     weight: bold;
   }
+}
+
+.todo-signature {
+  font-size: 14px;
+  word-wrap: break-word;
 }
 
 .btns-container {
@@ -62,8 +68,5 @@
         margin: 4px 6px;
       }
     }
-  }
-  .todo-container::after {
-    left: -144px;
   }
 }

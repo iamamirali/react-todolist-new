@@ -1,6 +1,6 @@
 export interface ITodo {
     id: number
     name: string
-    signature?: string
+    signature: string | null
     isDone: boolean
 }
