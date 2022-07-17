@@ -1,10 +1,10 @@
-@import "assets/styles/variables";
-@import "assets/styles/mixins";
+@import "styles/variables";
+@import "styles/mixins";
 
-.input-container {
+.container {
   @include item-box;
 
-  .todo-input {
+  .input {
     background-color: $milky;
     width: 80%;
     font-size: 24px;
@@ -14,17 +14,17 @@
       bottom: 1px solid $lightGray;
     }
     transition: all 0.2s;
+    &:focus {
+      outline: none;
+    }
   }
-  .todo-input:focus {
-    outline: none;
-  }
-  .error-input {
-    @extend .todo-input;
+  .error {
+    @extend .input;
     @include squeeze-animation;
     border-bottom-color: $red;
   }
 
-  .btn-add {
+  .addBtn {
     border-radius: 50%;
     width: 45px;
     height: 45px;
@@ -35,25 +35,25 @@
     padding: 0;
     transition: all 0.2s;
     cursor: pointer;
-  }
-  .btn-add:hover {
-    background-color: $darkBlue;
-  }
-  .btn-add:active {
-    transform: scale(1.1);
+    &:hover {
+      background-color: $darkBlue;
+    }
+    &:active {
+      transform: scale(1.1);
+    }
   }
 }
 
 @media screen and (max-width: 480px) {
-  .input-container {
+  .container {
     width: 90%;
     padding: 14px 18px;
 
-    .todo-input {
+    .input {
       width: 85%;
       font-size: 16px;
     }
-    .btn-add {
+    .addBtn {
       width: 35px;
       height: 35px;
       font-size: 32px;

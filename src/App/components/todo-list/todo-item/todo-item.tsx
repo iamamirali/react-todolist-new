@@ -4,7 +4,7 @@ import { saveTodoList } from "App/services/storage.service";
 import { useState } from "react";
 import { FaCheckCircle } from "react-icons/fa";
 import { RiDeleteBin5Fill } from "react-icons/ri";
-import "./todo-item.scss";
+import todoItemStyles from "./todo-item.module.scss";
 
 type Props = TodoListProps & {
   todoItem: ITodo;
@@ -33,22 +33,34 @@ function TodoItem({ todoItem, todoList, setTodoList }: Props) {
 
   return (
     <>
-      <div className={isTodoDone ? "done-todo" : "todo-container"}>
-        <p className="todo-title">{todoItem.name}</p>
-        <span className="todo-signature">{todoItem.signature}</span>
-        <div className="btns-container">
-          <button
-            className="btn-remove"
-            onClick={() => removeTodo(todoItem.id, todoList)}
-          >
-            <RiDeleteBin5Fill></RiDeleteBin5Fill>
-          </button>
-          <button
-            className={isTodoDone ? "btn-done" : "btn-not-done"}
-            onClick={() => setDoneTodo(todoItem)}
-          >
-            <FaCheckCircle></FaCheckCircle>
-          </button>
+      <div>
+        <div
+          className={
+            isTodoDone
+              ? `${todoItemStyles.doneContainer}`
+              : `${todoItemStyles.container}`
+          }
+        >
+          <p className={todoItemStyles.title}>{todoItem.name}</p>
+          <span className={todoItemStyles.signature}>{todoItem.signature}</span>
+          <div className={todoItemStyles.btnsContainer}>
+            <button
+              className={todoItemStyles.removeBtn}
+              onClick={() => removeTodo(todoItem.id, todoList)}
+            >
+              <RiDeleteBin5Fill></RiDeleteBin5Fill>
+            </button>
+            <button
+              className={
+                isTodoDone
+                  ? `${todoItemStyles.doneBtn}`
+                  : `${todoItemStyles.notDoneBtn}`
+              }
+              onClick={() => setDoneTodo(todoItem)}
+            >
+              <FaCheckCircle></FaCheckCircle>
+            </button>
+          </div>
         </div>
       </div>
     </>

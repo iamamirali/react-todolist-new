@@ -1,12 +1,12 @@
-@import "assets/styles/variables";
+@import "styles/variables";
 
-.app-container {
+.container {
   width: 80%;
   margin: auto;
   text-align: center;
   padding-bottom: 48px;
 
-  .app-title {
+  .title {
     font-size: 3rem;
     color: $lightBlack;
   }
@@ -25,9 +25,9 @@
 }
 
 @media screen and (max-width: 480px) {
-  .app-container {
+  .container {
     width: 95%;
-    .app-title {
+    .title {
       font-size: 2.5rem;
     }
   }

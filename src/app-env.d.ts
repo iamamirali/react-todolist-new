@@ -5,3 +5,5 @@ declare global {
     ethereum?:MetaMaskInpageProvider
   }
 }
+
+declare module '*.scss';

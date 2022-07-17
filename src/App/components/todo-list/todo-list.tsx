@@ -1,6 +1,7 @@
 import TodoItem from "./todo-item/todo-item";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
-import "./todo-list.scss";
+import todoListStyles from "./todo-list.module.scss";
+import "styles/smooth-deletion.scss";
 import { getTodos, saveTodoList } from "App/services/storage.service";
 import { useEffect } from "react";
 import { TodoListProps } from "App/models/props.model";
@@ -19,7 +20,7 @@ function TodoList({ todoList, setTodoList }: TodoListProps) {
   function showList(list: ITodo[]) {
     return list.map((item) => {
       return (
-        <CSSTransition key={item.id} timeout={300} classNames="todo-item">
+        <CSSTransition key={item.id} timeout={300} classNames="item">
           <TodoItem
             {...{ todoList, setTodoList, key: item.id, todoItem: item }}
           />
@@ -30,12 +31,15 @@ function TodoList({ todoList, setTodoList }: TodoListProps) {
 
   return (
     <>
-      <section className="todos-container">
+      <section className={todoListStyles.container}>
         <TransitionGroup>
           {todoList.length > 0 && showList(todoList)}
         </TransitionGroup>
         {todoList.length > 2 && (
-          <button className="btn-remove-all" onClick={onRemoveAllClick}>
+          <button
+            className={todoListStyles.removeAllBtn}
+            onClick={onRemoveAllClick}
+          >
             Remove All
           </button>
         )}

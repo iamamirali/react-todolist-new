@@ -3,7 +3,7 @@ import { ITodo } from "App/models/todo.model";
 import { Web3Props } from "App/models/web3.model";
 import { saveTodoList } from "App/services/storage.service";
 import { useState } from "react";
-import "./todo-input.scss";
+import inputStyles from "./todo-input.module.scss";
 
 function TodoInput({
   todo,
@@ -50,16 +50,18 @@ function TodoInput({
     <>
       <form
         onSubmit={(e) => handleTodoSubmit(e, todo)}
-        className="input-container"
+        className={inputStyles.container}
       >
         <input
           type="text"
           onChange={handleInputChange}
           value={todo}
-          className={hasInputErr ? "error-input" : "todo-input"}
+          className={
+            hasInputErr ? `${inputStyles.error}` : `${inputStyles.input}`
+          }
           placeholder="Add a ToDo..."
         />
-        <button className="btn-add" type="submit">
+        <button className={inputStyles.addBtn} type="submit">
           +
         </button>
       </form>

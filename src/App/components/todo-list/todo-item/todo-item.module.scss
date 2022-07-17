@@ -1,69 +1,72 @@
-@import "assets/styles/mixins";
-@import "assets/styles/variables";
+@import "styles/mixins";
+@import "styles/variables";
 
-.todo-container {
+.container {
   @include todo-item-box;
   display: block;
   position: relative;
   overflow: hidden;
+
+  &::after {
+    @include box-left-badge;
+  }
 }
-.todo-container::after {
-  @include box-left-badge;
-}
-.done-todo {
-  @extend .todo-container;
+.doneContainer {
+  @extend .container;
   background-color: $darkWhite;
   opacity: 70%;
-}
-.done-todo::after {
-  @include box-left-badge;
-  background-color: $green;
+
+  &::after {
+    @include box-left-badge;
+    background-color: $green;
+  }
 }
 
-.todo-title {
+.title {
   font: {
     size: 1.5rem;
     weight: bold;
   }
 }
 
-.todo-signature {
+.signature {
   font-size: 14px;
   word-wrap: break-word;
 }
 
-.btns-container {
+.btnsContainer {
   margin-top: 16px;
-  .btn-not-done {
+  .notDoneBtn {
     @include small-btn;
     color: $darkGray;
   }
-  .btn-done {
+  .doneBtn {
     @include small-btn;
     color: $green;
   }
-  .btn-remove {
+  .removeBtn {
     @include small-btn;
     color: $red;
-  }
-  .btn-remove:hover {
-    color: $darkRed;
+
+    &:hover {
+      color: $darkRed;
+    }
   }
 }
 
 @media screen and (max-width: 480px) {
-  .todo-container {
+  .container {
     width: 100%;
     padding: 8px 2px 8px 12px;
 
-    .todo-title {
+    .title {
       font-size: 0.9rem;
     }
-    .btns-container {
+    .btnsContainer {
       margin-top: 9px;
-      .btn-done,
-      .btn-not-done,
-      .btn-remove {
+      .doneBtn,
+      .notDoneBtn,
+      .removeBtn {
         font-size: 1.2rem;
         margin: 4px 6px;
       }
